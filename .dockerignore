@@ -1,0 +1,6 @@
+# App
+./dist/*
+./node_modules/*
+./log/*
+./docs/*
+./public/*

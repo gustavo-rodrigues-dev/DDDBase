@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  nginx:
+    image: nginx:latest@sha256:d85914d547a6c92faa39ce7058bd7529baacab7e0cd4255442b04577c4d1f424
+    ports:
+      - 8080:8080
+    restart: always
+    volumes:
+      - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./server/nginx/nginx.api.conf:/etc/nginx/conf.d/api.conf
+    depends_on:
+      - api
+  api:
+    build:
+      context: .
+      dockerfile: default.Dockerfile
+    container_name: api
+    environment:
+      - NODE_ENV=development
+      - APP_PORT=3000
+      - PG_USER_NAME=pguser
+      - PG_PASS=pguser
+      - PG_DB=db
+      - PG_SCHEMA=public
+      - PG_HOST=postgres
+      - PG_PORT=5432
+    ports:
+      - 9229:9229
+      - 3000:3000
+    volumes:
+      - ./src:/usr/src/app/src
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    image: postgres:latest@sha256:73d065c344b419ce97bba953c7887c7deead75e0998053518938231cd7beb22c
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+      POSTGRES_DB: db
+      TZ: "America/Sao_Paulo"
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data:rw
+volumes:
+  postgres-data:
