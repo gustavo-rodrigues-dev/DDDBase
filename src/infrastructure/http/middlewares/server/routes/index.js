@@ -1,5 +1,5 @@
-import SayHello from '../../../../../domain/hello/controller/sayHello'
+import Health from '../../../../../domain/health/controller/health'
 
 export default (app) => {
-  app.get('/', SayHello.hello)
+  app.get('/', Health.uptime)
 }
