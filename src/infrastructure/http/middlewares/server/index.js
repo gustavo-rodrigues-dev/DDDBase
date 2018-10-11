@@ -1,17 +1,25 @@
+import MiddlewareInterface from '../interfaceMiddleware'
 import express from 'express'
-import config from '../../../../config/config'
 import body from '../common/body'
 import httpSecurity from '../common/httpSecurity'
+import logger from '../common/logger'
 import boot from './boot'
-import logger from '../../../factories/loggerFactory'
 import routes from './routes'
 
-const app = express()
-config(app)
-logger(app)
-body(app)
-httpSecurity(app)
-routes(app)
-boot(app)
+class Server extends MiddlewareInterface {
+  constructor (config) {
+    super()
+    this.server = express()
+    this.server.set('config', config)
+  }
 
-export default app
+  start () {
+    logger(this.server)
+    body(this.server)
+    httpSecurity(this.server)
+    routes(this.server)
+    boot(this.server)
+  }
+}
+
+export default Server

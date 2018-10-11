@@ -5,6 +5,7 @@ const config = {
   },
   secret: 'j~9z{WA1bV?4L:9',
   jwtSession: { session: false },
+  middleware: 'server',
   port: process.env.APP_PORT || 3000,
   db: {
     username: process.env.PG_USER_NAME,

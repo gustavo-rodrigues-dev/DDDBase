@@ -1,3 +1,3 @@
-export default (app) => {
-  app.listen(app.config.port, () => app.logger.info(`Start api Customer at ${app.config.port}`))
+export default server => {
+  server.listen(3000, () => server.logger.info('Start api Customer'))
 }

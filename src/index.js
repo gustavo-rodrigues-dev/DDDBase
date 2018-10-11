@@ -1,3 +1,7 @@
-import app from './infrastructure/http/middlewares/server/index'
+import config from './config/config'
+import App from './infrastructure/http/middlewares/server/index'
 
-export default app
+const service = new App(config)
+service.start()
+
+export default service

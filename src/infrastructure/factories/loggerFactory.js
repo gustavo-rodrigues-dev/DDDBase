@@ -1,16 +1,22 @@
 import { createLogger, transports } from 'winston'
 
-export default (app) => {
-  const debugTransports = [
-    new (transports.Console)({
-      colorize: true
-    })
-  ]
+class Logger {
+  constructor (config) {
+    const debugTransports = [
+      new transports.Console({
+        colorize: true
+      })
+    ]
 
-  app.logger = createLogger({
-    level: app.config.debug.level,
-    transports: debugTransports
-  })
-
-  return app
+    Object.assign(
+      this,
+      createLogger({
+        level: config.level,
+        transports: debugTransports
+      })
+    )
+  }
+}
+export default config => {
+  return new Logger(config)
 }
