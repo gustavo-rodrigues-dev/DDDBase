@@ -12,18 +12,31 @@ class AddBlacklist {
       return output.status(200).json({
         success: true,
         msg: 'Saved successfully',
-        data: newBlacklist
+        data: newBlacklist.cpf
       })
     } catch (e) {
       let code = 500
+
       if (e.code) {
         code = e.code
       }
 
-      output.status(code).json({
-        success: false,
-        msg: 'Error on save blacklist',
-        data: e.message
+      if (e.errors[0].type === 'unique violation') {
+        code = 301
+      }
+
+      if (code > 399) {
+        return output.status(code).json({
+          success: false,
+          msg: 'Error on save blacklist',
+          data: e
+        })
+      }
+
+      return output.status(code).json({
+        success: true,
+        msg: 'Saved successfully',
+        data: e.errors[0].value
       })
     }
   }
