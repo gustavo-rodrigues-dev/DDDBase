@@ -12,11 +12,13 @@ class Logger {
       this,
       createLogger({
         level: config.level,
+        json: true,
         transports: debugTransports
       })
     )
   }
 }
+
 export default config => {
   return new Logger(config)
 }

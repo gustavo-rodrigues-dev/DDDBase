@@ -9,7 +9,7 @@ const config = {
   db: {
     username: '',
     password: '',
-    database: 'checkin_api',
+    database: 'blacklist',
     host: null,
     port: null,
     dialect: 'sqlite',

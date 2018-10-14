@@ -1,27 +1,27 @@
 const config = {
   debug: {
-    level: 'debug',
-    available: true
+    level: 'sily',
+    available: false
   },
-  secret: 'j~9z{WA1bV?4L:9',
+  secret: 'j~9z{WA1bV?4L:6',
   jwtSession: { session: false },
   port: 3000,
   db: {
-    username: 'pguser',
-    password: 'pguser',
-    database: 'db',
-    host: '127.0.0.1',
-    port: 5432,
-    dialect: 'postgres',
+    username: '',
+    password: '',
+    database: 'blacklist',
+    host: null,
+    port: null,
+    dialect: 'sqlite',
+    storage: './database/db.local.sqlite',
+    sync: {
+      force: true
+    },
     define: {
       underscored: true
     },
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
+    seederStorage: 'json',
+    seederStoragePath: './database/migration.local.json'
   }
 }
 

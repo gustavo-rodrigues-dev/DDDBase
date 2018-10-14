@@ -14,9 +14,9 @@ class Server extends MiddlewareInterface {
   }
 
   start () {
-    logger(this.server)
     body(this.server)
     httpSecurity(this.server)
+    logger(this.server)
     routes(this.server)
     boot(this.server)
   }

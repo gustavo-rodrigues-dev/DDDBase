@@ -56,6 +56,7 @@
 		"body-parser": "^1.18.2",
 		"consign": "^0.1.6",
 		"cors": "^2.8.4",
+		"cpf": "^1.0.6",
 		"crypto-js": "^3.1.9-1",
 		"express": "^4.16.3",
 		"express-winston": "^3.0.0",
@@ -68,7 +69,7 @@
 		"pg": "^7.4.0",
 		"pg-hstore": "^2.3.2",
 		"sequelize": "^4.22.11",
-		"sqlite3": "^4.0.0",
+		"sqlite3": "^4.0.2",
 		"winston": "^3.0.0"
 	},
 	"devDependencies": {
