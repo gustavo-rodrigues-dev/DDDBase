@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: API Natura - People Management
-  description: People Management
+  title: Blacklist
+  description: SImple Blacklist
   version: '1.0'
 host: 'localhost:3000'
 schemes:

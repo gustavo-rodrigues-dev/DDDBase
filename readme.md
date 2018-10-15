@@ -1,0 +1,220 @@
+# DDD Boilerplate
+
+Esse projeto tem o objetivo de demontrar uma arquitetura ONION na prática, com algumas estretégias mais flexiveis de exposição, podendo ser servida como uma aplicação server convencional, serverless, e em breve cli.
+
+Esse projeto é dividido em dois grandes blocos, a prieira, na camada de Domain, onde são resolvidas todas as regras de negócio da API, sem nenhuma interferência de agentes externos diretamente, exceto pelo uso das Repositories, que abstraem toda a regra de persistência da aplicação. Já o segundo pilar, consiste numa camada de Infraestructure modular, que contem uma camada de dados e de abstração, podendo facilmente interoperar com diferentes modalidades de Banco de dados, e também uma camada de middleware http, onde, temos agentes incomuns tanto na exposição da aplicação como serverless assim como numa aplicação server convencional, flexibilizando o processo de tomada de decisão ou mudança de escopo.
+
+## Estrutura
+
+- database
+    - migrations
+    - seeders
+- log
+- public
+- server
+- src
+    - config
+    - domain
+        - ownBusiness
+            - controllers
+        - exceptions
+-  infrastructure
+    - factories
+    - http
+        - middlewares
+            - common
+            - server
+                - middlewares
+                - routes
+            - serverless
+                - middlewares
+                - routes
+    - repositories
+        - exceptions
+        - relational
+            - schemas
+        - ownRepository,js
+
+- test
+    - functional
+    - unit
+    
+### database/migrations
+Pasta destinada as Database Migrations que nos permitem controlar a versão do banco de dados, evitando a necessidade de escrever scripts SQL diretamente e executá-los em ferramentas de administração. Com as Database Migrations (ou Schema Migrations), alterações incrementais nas bases de dados são feitas de forma gerenciada. 
+
+no caso do Sequelize que é a lib default, a referência de codificação é essa:
+http://docs.sequelizejs.com/manual/tutorial/migrations.html#creating-first-model-and-migration- 
+
+### database/seeders
+Assim como a migrations, também servem para inserções incrementais no banco, mas ao invés de estrutura, os seeders são destinados a dados pelos quais queremos inserir, como cargas iniciais.
+
+No caso do Sequelize, que é o ORM default do projeto, a referência de como usar é essa:
+http://docs.sequelizejs.com/manual/tutorial/migrations.html#creating-first-seed
+  
+### server
+Nessa pastas, estão todas as configurações do servidor, que serão utilizadas nos containers da aplicação
+
+### ser/config
+Nessa pasta, econtra-se todas as configurações da aplicação, responsáveis por habilitar ou desabilitar funções, ou mesmo, configurações de serviçø
+### src/domain
+Nessa camada estarão todas as regras pertinentes ao negócio, incluindo seus controladores excessões, podento ter diretóriox auxiliares para lidar com camadas de validação, transformação, etc. Mas lembre-se que essa camada não deve abstrair camada de dados, ela deve usa-la conforme a regra, assim como não deve abstrair camadas de exposição do serviço, rotas, e afins. Sua finalidade e concentrar regras de negócio.
+
+### src/infrastructure/http/
+Nessa camada, estão todos os middlewares de exposição do serviço, podendo ter um ou vários, no nosso caso, temos um middleware comum, com configurações que atendem tanto aplicaçõs Server/Container convencional, assim com um middleware de exposição preparado para AWS Lambda. é nessa camada onde vamos expor nossas rotas, assim como definir middlewares de segurança e transformação de dados vinda da camada HTTP.
+
+### src/infrastructure/factories
+Nessa sessão encontram-se todos os wrapers, fatories e singletons de configuração e uso de recursos da aplicação já atendendo as expectativas do serviço, como instancia do datasource e do logger.
+
+### test/functional
+Sessão responsável por conter todos os testes de integração, ou seja, os testes das rotas propriamente ditas, por ser um projeto BDD, nessa sessão recomenda-se um arquivo por arquivo de rota, de modo que você implemente o teste de todos ou dos principais comportamentos por rota.
+
+### test/unit
+Área responsável por conter todos os testes unitários do projeto, ou seja, todas as classes e funções utilitárias de modo individual. 
+
+## Configuração de ambiente
+
+### Inicio
+Para Instalar todas as dependências do projeto, assim como já executar as configurações do serviço, como construção do banco de dados, basta executar os comando abaixo, seguindo a mesma sequência.
+
+```bash
+npm install
+```
+
+```bash
+docker-compose up postgress
+```
+
+```bash
+npm run db:migrate
+```
+
+Para rodar todos os seeders
+```bash
+npm run db:seeder
+```
+
+### Executando a aplicação em Container
+Essa modalidade consiste em executar a aplicação utilizando o docker-compose já com um banco de dados Postgress, um Proxy reverso com nginx, e exposto tanto pelo Proxy, Aplicação interna e ainda com o modo debug já configurado. Lembrando que isso deve ser feito após a etapa anterior, assim como para executar a aplicação baseada em Lambda, você pode pular essa etapa.
+
+** Para executar a aplicação ** 
+```bash
+docker-compose up
+```
+
+** Acessos **
+- aplicação com nginx: http://localhost:8080 
+- aplicação: http://localhost:3000
+- Debug
+    - porta: 5858
+
+### Executando a aplicação em modo Serverless com AWS SAM
+Para executar a aplicação intermanete simulando uma invocação handler, é necessário que você instale o AWS SAM CLI no seu computador https://docs.aws.amazon.com/pt_br/lambda/latest/dg/sam-cli-requirements.html
+
+Feito isso, basta executar a aplicação, lembrando que caso tenha optado pelo banco de dados em container, você terá que executar esse comando primeiro.
+
+** Instalando **
+```bash
+npm run build:serverless
+```
+Esse comando além de instalar, já move os arquivos para os seus rspectivos diretôrios;
+
+** Instalando **
+```bash
+sam local start-api --debug-port 5858
+```
+ou 
+```bash
+sam local start-api
+```
+
+### Teste
+Para execução de testes unitários e funcionais
+
+```bash
+npm test
+```
+
+Para verificar a cobertura de teste
+```bash
+npm run cover
+```
+
+### lint
+Para verificar se o código está dentro do padrão standard js
+
+```bash
+npm run lint
+```
+
+Para verificar e corrigir automaticamente para o padrão standard js, caso não corrija ele aponta onde deve ajustar
+
+```bash
+npm run lint:fix
+```
+
+### Execução
+
+#### sincrono
+Usoado para startar a aplicação sem observar as mudanças em tempo real.
+
+```bash
+npm start
+```
+
+#### assincrono
+Usado durante o desenvolvimento para enxergar em tempo real as mudanças sem restartar.
+
+```bash
+npm run startdev
+```
+
+#### modo debug
+Caso queira depurar enquanto desenvolve
+
+```bash
+npm run debug
+```
+
+Caso você use [VSCode](https://code.visualstudio.com/docs/editor/debugging) você pode usar a configuração abaixo e depurar em tempo de execução.
+
+**.vscode/launch.json**
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch via NPM",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": [
+            "run",
+            "debug"
+        ],
+        "port": 9229
+    },
+    {
+        "name": "Attach to SAM Local",
+        "type": "node",
+        "request": "attach",
+        "address": "localhost",
+        "port": 5858,
+        "localRoot": "${workspaceRoot}/dist",
+        "remoteRoot": "/var/task",
+        "protocol": "inspector"
+    }
+  ]
+}
+```
+
+#### Criar
+
+```bash
+npm run apidoc
+```
+#### Documentação da API
+** swagger.yml **
+
+## License
+
+  [MIT](LICENSE)
