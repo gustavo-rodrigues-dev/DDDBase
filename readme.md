@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/gustavobeavis/DDDBase.svg?branch=master)](https://travis-ci.org/gustavobeavis/DDDBase)
 [![Coverage Status](https://coveralls.io/repos/github/gustavobeavis/DDDBase/badge.svg?branch=master)](https://coveralls.io/github/gustavobeavis/DDDBase?branch=master)
 [![codebeat badge](https://codebeat.co/badges/e9a671f2-8bc0-41ff-95bd-24d404f547cb)](https://codebeat.co/projects/github-com-gustavobeavis-dddbase-master)
-[![Daviid Dependencies](https://david-dm.org/gustavobeavis/apibasenode.svg)](https://david-dm.org/gustavobeavis/DDDBase)
+[![Daviid Dependencies](https://david-dm.org/gustavobeavis/DDDBase.svg)](https://david-dm.org/gustavobeavis/DDDBase)
 [![Daviid Dependencies](https://david-dm.org/gustavobeavis/DDDBase/dev-status.svg)](https://david-dm.org/gustavobeavis/DDDBase?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/gustavobeavis/DDDBase/badge.svg?targetFile=package.json)](https://snyk.io/test/github/gustavobeavis/DDDBase?targetFile=package.json)
 
