@@ -1,22 +1,26 @@
 {
-    "presets": [
-      ["env", {
-        "targets": {
-          "node": "current"
-        }
-      }]
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          ["istanbul", {
-            "exclude": [
-              "**/*.spec.js"
-            ]
-          }]
-        ]
-      }
-    },
-    "sourceMaps": true,
-    "retainLines": true
+	"presets": [
+		[
+			"env",
+			{
+				"targets": {
+					"node": "8.10"
+				}
+			}
+		]
+	],
+	"env": {
+		"test": {
+			"plugins": [
+				[
+					"istanbul",
+					{
+						"exclude": [ "**/*.spec.js" ]
+					}
+				]
+			]
+		}
+	},
+	"sourceMaps": true,
+	"retainLines": true
 }

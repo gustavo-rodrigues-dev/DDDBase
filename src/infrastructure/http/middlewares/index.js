@@ -1,16 +1,7 @@
-import Server from './server/'
-import InterfaceMiddleware from './interfaceMiddleware'
+import server from './serverless/'
 
-class App extends InterfaceMiddleware {
-  constructor (config) {
-    super()
-    if (config.middleware === 'server') {
-      this.middleware = new Server(config)
-    }
-  }
-  start () {
-    this.middleware.start()
-  }
+exports = config => {
+  server(config)
+
+  return server
 }
-
-export default App

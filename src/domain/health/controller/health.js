@@ -1,13 +1,13 @@
 import { uptime as proccessUptime } from 'process'
-import { datasource } from '../../../infrastructure/repositories/index'
 class Health {
   static async uptime (input, output) {
     try {
-      await datasource.sequelize.authenticate()
-      output.status(200).send(`The system is online since ${new Date(Date.now() - proccessUptime() * 1000)}!`)
+      return output
+        .status(200)
+        .send(`The system is online since ${new Date(Date.now() - proccessUptime() * 1000)}!`)
     } catch (e) {
       console.log(e)
-      output.status(500).send(`The system is unavailable`)
+      return utput.status(500).send(`The system is unavailable`)
     }
   }
 }

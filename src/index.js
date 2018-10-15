@@ -1,7 +1,6 @@
 import config from './config/config'
 import App from './infrastructure/http/middlewares/server/index'
 
-const service = new App(config)
-service.start()
+const server = App(config)
 
-export default service
+export default server
