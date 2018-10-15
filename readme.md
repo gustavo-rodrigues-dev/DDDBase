@@ -195,6 +195,8 @@ Caso você use [VSCode](https://code.visualstudio.com/docs/editor/debugging) voc
 ### Documentação da API
 ** ./swagger.yml **
 
+** [Postman](https://www.getpostman.com/collections/b7677f62b2f8847a7193) **
+
 ### Referências
  - Palestra sobre DDD e Node.JS [Slides - meetup](https://www.slideshare.net/gustavobeavis/indo-alem-domvcnodejs)
  - [Implementing SOLID and the onion architecture in Node.js](https://dev.to/remojansen/implementing-the-onion-architecture-in-nodejs-with-typescript-and-inversifyjs-10ad)
