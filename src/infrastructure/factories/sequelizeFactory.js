@@ -4,7 +4,7 @@ import path from 'path'
 
 let datasource = null
 
-export default (config, logger) => {
+export default (config, logger = console) => {
   if (datasource !== null) return datasource
 
   const dir = path.join(__dirname, '../repositories/relational/sequelize/schemas/')

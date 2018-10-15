@@ -1,0 +1,169 @@
+swagger: '2.0'
+info:
+  title: API Natura - People Management
+  description: People Management
+  version: '1.0'
+host: 'localhost:3000'
+schemes:
+  - http
+  - https
+basePath: /
+tags:
+  - name: Blacklist
+    description: Operations related to blacklist cpf
+parameters:
+  cpf:
+    name: cpf
+    in: path
+    description: cpf identifier
+    required: true
+    type: string
+  document:
+    name: cpf
+    in: query
+    description: cpf
+    required: true
+    type: string
+paths:
+  /blacklist:
+    post:
+      tags:
+        - Blacklist
+      summary: Add to the Blacklist
+      parameters:
+        - in: body
+          name: body
+          description: Shoud add a CPF to the Blacklist.
+          schema:
+            type: object
+            required:
+              - cpf
+            properties:
+              cpf:
+                type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SuccessSave'
+        '412':
+          description: Precondition Failed
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    get:
+      tags:
+        - Blacklist
+      summary: Check if CPF is blocked
+      description: 'Given a CPF, check if it is blacklisted'
+      operationId: checkFromTheBlackList
+      parameters:
+        - $ref: '#/parameters/document'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Check'
+        '412':
+          description: Precondition Failed
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /blacklist/{cpf}: 
+    get:
+      tags:
+        - Blacklist
+      summary: Check if CPF is blocked
+      description: 'Given a CPF, check if it is blacklisted'
+      operationId: checkFromTheBlackList
+      parameters:
+        - $ref: '#/parameters/cpf'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Check'
+        '301':
+          description: OK
+          schema:
+            $ref: '#/definitions/Check'
+        '412':
+          description: Precondition Failed
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    delete: 
+      tags:
+        - Blacklist
+      summary: Remove from the Blacklist.
+      description: 'Given a CPF, remove it from the blacklist'
+      operationId: removeFromTheBlackList
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/cpf'
+      responses:
+        '200':
+          description: OK
+        '412':
+          description: Precondition Failed
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  SuccessSave:
+      type: object
+      required:
+        - cpf
+      properties:
+        success:
+          type: boolean
+          default: false
+        msg:
+          type: string
+          default: Saved successfully
+        data:
+          type: string
+          description: CPF number
+  Check:
+    type: object
+    required:
+      - cpf
+    properties:
+      success:
+        type: boolean
+        default: true
+      msg:
+        type: string
+        default: 'CPF is Blocked'
+      data:
+        type: object
+        properties:
+          isBlocked: 
+            type: boolean
+            default: true
+  Error:
+    type: object
+    required:
+      - cpf
+    properties:
+      success:
+        type: boolean
+        default: false
+      msg:
+        type: string
+      type:
+        type: string

@@ -1,27 +1,24 @@
 const config = {
   debug: {
-    level: 'error',
+    level: 'debug',
     available: true
   },
-  secret: 'j~9z{WA1bV?4L:7',
+  secret: 'j~9z{WA1bV?4L:9',
   jwtSession: { session: false },
-  port: 3000,
+  port: process.env.APP_PORT || 3000,
   db: {
-    username: '',
-    password: '',
-    database: 'checkin_api',
-    host: null,
-    port: null,
-    dialect: 'sqlite',
-    storage: './database/db.production.sqlite',
-    sync: {
-      force: true
-    },
-    define: {
-      underscored: true
-    },
-    seederStorage: 'json',
-    seederStoragePath: './database/migration.prodution.json'
+    username: process.env.PG_USER_NAME,
+    password: process.env.PG_PASS,
+    database: process.env.PG_DB,
+    host: process.env.PG_HOST,
+    port: process.env.PG_PORT,
+    dialect: 'postgres',
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   }
 }
 

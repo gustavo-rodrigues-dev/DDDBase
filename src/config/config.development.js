@@ -3,19 +3,22 @@ const config = {
     level: 'debug',
     available: true
   },
-  secret: 'j~9z{WA1bV?4L:6',
+  secret: 'j~9z{WA1bV?4L:9',
   jwtSession: { session: false },
-  port: 3000,
+  port: process.env.APP_PORT || 3000,
   db: {
-    username: '',
-    password: '',
-    database: 'blacklist',
-    host: null,
-    port: null,
-    dialect: 'sqlite',
-    storage: './database/db.development.sqlite',
-    seederStorage: 'json',
-    seederStoragePath: './database/migration.development.json'
+    username: process.env.PG_USER_NAME,
+    password: process.env.PG_PASS,
+    database: process.env.PG_DB,
+    host: process.env.PG_HOST,
+    port: process.env.PG_PORT,
+    dialect: 'postgres',
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   }
 }
 

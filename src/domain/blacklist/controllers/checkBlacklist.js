@@ -11,7 +11,7 @@ class checkBlacklist {
 
       return output.status(200).json({
         success: true,
-        msg: `CPF is ${cpfIsBlocked ? '' : 'not'} Blocked`,
+        msg: `CPF is${cpfIsBlocked ? '' : "n't"} Blocked`,
         data: {
           isBlocked: cpfIsBlocked
         }
@@ -22,7 +22,7 @@ class checkBlacklist {
         code = e.statusCode
       }
 
-      output.status(code).json({
+      return output.status(code).json({
         success: false,
         msg: 'Error on check blacklist',
         data: e.message

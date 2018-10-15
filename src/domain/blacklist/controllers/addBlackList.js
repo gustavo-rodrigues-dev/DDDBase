@@ -29,7 +29,7 @@ class AddBlacklist {
         return output.status(code).json({
           success: false,
           msg: 'Error on save blacklist',
-          data: e
+          data: e.message
         })
       }
 

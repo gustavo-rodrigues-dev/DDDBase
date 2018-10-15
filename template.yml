@@ -1,44 +1,49 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: >
-    sam-app
-
-    Sample SAM Template for sam-app
-    
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Transform: 'AWS::Serverless-2016-10-31'
+Description: "Blacklist Aplication Serverless"
 Globals:
-    Function:
-        Timeout: 3
-
-
+  Function:
+    Timeout: 30
 Resources:
-
-    StatusFunction:
-        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-        Properties:
-            CodeUri: dist/
-            Handler: serverless.handler
-            Runtime: nodejs8.10
-            Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-                Variables:
-                    PARAM1: VALUE
-            Events:
-                HelloWorld:
-                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-                    Properties:
-                        Path: /status
-                        Method: get
-
+  ServiceBlacklist:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      CodeUri: dist/
+      Handler: serverless.handler
+      Runtime: nodejs8.10
+      Environment:
+        Variables:
+          NODE_ENV: development
+          APP_PORT: 3000
+          PG_USER_NAME: pguser
+          PG_PASS: pguser
+          PG_DB: db
+          PG_SCHEMA: public
+          PG_HOST: host.docker.internal
+          PG_PORT: 5432
+      Events:
+        Status:
+          Type: Api
+          Properties:
+            Path: /status
+            Method: get
+        Blacklist:
+          Type: Api
+          Properties:
+            Path: /blacklist
+            Method: ANY
+        BlacklistInternl:
+          Type: Api
+          Properties:
+            Path: '/blacklist/{cpf}'
+            Method: ANY
 Outputs:
-
-    HelloWorldApi:
-      Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-
-    StatusFunction:
-      Description: "Hello World Lambda Function ARN"
-      Value: !GetAtt StatusFunction.Arn
-
-    StatusFunctionIamRole:
-      Description: "Implicit IAM Role created for Hello World function"
-      Value: !GetAtt HelloWorldFunctionRole.Arn
+  BlackListApiProduction:
+    Description: 'API Gateway endpoint URL for Prod stage for Blacklist function'
+    Value: null
+  ServiceBlacklist:
+    Description: 'Hello World Lambda Function ARN'
+    Value: null
+  ServiceBlacklistIamRole:
+    Description: 'Implicit IAM Role created for Hello World function'
+    Value: null
