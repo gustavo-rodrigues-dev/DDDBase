@@ -1,10 +1,11 @@
 {
-	"name": "DDD-EXPRESS",
+	"name": "ddd-base",
 	"version": "1.0.0",
 	"description": "Bassic DDD Express",
+	"keywords": [ "express", "lambda", "DDD", "Boilerplate" ],
 	"author": "Gustavo S. Rodrigues <gustavo.beavis@gmail.com>",
 	"license": "MIT",
-	"repository": "https://github.com/gustavobeavis/ddd-express",
+	"repository": "https://github.com/gustavobeavis/DDDBase",
 	"main": "./dist/index.js",
 	"engines": {
 		"node": ">=6.9.0"
