@@ -152,30 +152,9 @@ Para verificar e corrigir automaticamente para o padrão standard js, caso não 
 npm run lint:fix
 ```
 
-### Execução
+### Debug
 
-#### sincrono
-Usoado para startar a aplicação sem observar as mudanças em tempo real.
-
-```bash
-npm start
-```
-
-#### assincrono
-Usado durante o desenvolvimento para enxergar em tempo real as mudanças sem restartar.
-
-```bash
-npm run startdev
-```
-
-#### modo debug
-Caso queira depurar enquanto desenvolve
-
-```bash
-npm run debug
-```
-
-Caso você use [VSCode](https://code.visualstudio.com/docs/editor/debugging) você pode usar a configuração abaixo e depurar em tempo de execução.
+Caso você use [VSCode](https://code.visualstudio.com/docs/editor/debugging) você pode usar a configuração abaixo e depurar em tempo de execução 
 
 **.vscode/launch.json**
 ```json
@@ -206,15 +185,15 @@ Caso você use [VSCode](https://code.visualstudio.com/docs/editor/debugging) voc
   ]
 }
 ```
+### Documentação da API
+** ./swagger.yml **
 
-#### Criar
-
-```bash
-npm run apidoc
-```
-#### Documentação da API
-** swagger.yml **
-
+### Referências
+ - Palestra sobre DDD e Node.JS [Slides - meetup](https://www.slideshare.net/gustavobeavis/indo-alem-domvcnodejs)
+ - [Implementing SOLID and the onion architecture in Node.js](https://dev.to/remojansen/implementing-the-onion-architecture-in-nodejs-with-typescript-and-inversifyjs-10ad)
+- [12 Fator](https://12factor.net/pt_br/)
+- [System design primer](https://github.com/donnemartin/system-design-primer/)
+- [P of EAA](https://martinfowler.com/books/eaa.html)
 ## License
 
   [MIT](LICENSE)
