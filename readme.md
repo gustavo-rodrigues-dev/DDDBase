@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/gustavobeavis/apibasenode.svg?branch=master)](https://travis-ci.org/gustavobeavis/DDDBase)
+[![Coverage Status](https://coveralls.io/repos/github/gustavobeavis/apibasenode/badge.svg?branch=master)](https://coveralls.io/github/gustavobeavis/DDDBase?branch=master)
+[![codebeat badge](https://codebeat.co/badges/f5c34f34-2eae-4146-b95f-ed7a9c39284a)](https://codebeat.co/projects/github-com-gustavobeavis-DDDBase-master)
+[![Daviid Dependencies](https://david-dm.org/gustavobeavis/apibasenode.svg)](https://david-dm.org/gustavobeavis/DDDBase)
+[![Daviid Dependencies](https://david-dm.org/gustavobeavis/apibasenode/dev-status.svg)](https://david-dm.org/gustavobeavis/DDDBase?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/gustavobeavis/apibasenode/badge.svg?targetFile=package.json)](https://snyk.io/test/github/gustavobeavis/DDDBase?targetFile=package.json)
+
 # DDD Boilerplate
 
 Esse projeto tem o objetivo de demontrar uma arquitetura ONION na prática, com algumas estretégias mais flexiveis de exposição, podendo ser servida como uma aplicação server convencional, serverless, e em breve cli.
