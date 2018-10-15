@@ -16,7 +16,7 @@ class RemoveBlackList {
         code = e.code
       }
 
-      output.status(code).json({
+      return output.status(code).json({
         success: false,
         msg: 'Error on save blacklist',
         data: e.message

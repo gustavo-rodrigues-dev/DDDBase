@@ -8,7 +8,6 @@ class Health {
         .status(200)
         .send(`The system is online since ${new Date(Date.now() - proccessUptime() * 1000)}!`)
     } catch (e) {
-      console.log(e)
       return output.status(500).send(`The system is unavailable`)
     }
   }
