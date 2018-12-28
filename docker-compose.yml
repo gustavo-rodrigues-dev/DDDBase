@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   nginx:
-    image: nginx:latest@sha256:5704bcdeec8715eb71c95a425f4c4a14264d8c6f92a0b105c23933a2eb503b63
+    image: nginx:latest@sha256:333a036f4f8cd2314bdf339a5c72440e011071831699abefe03b73442d9b0045
     ports:
       - 8080:8080
     restart: always
@@ -33,7 +33,7 @@ services:
       - postgres
     restart: always
   postgres:
-    image: postgres:latest@sha256:4e6a29dcc4cfa5715114af878aa72c75327d97b9259f7862c71882d08188c3b4
+    image: postgres:latest@sha256:28b4a1b0d3ae9b38a16c97a4e655bdc13496a304d1a241c531ac1efc2faa7230
     ports:
       - "5432:5432"
     environment:
