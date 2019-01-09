@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/gustavobeavis/DDDBase.svg?branch=master)](https://travis-ci.org/gustavobeavis/DDDBase)
+[![Linux Status](https://travis-ci.org/gustavobeavis/DDDBase.svg?branch=master)](https://travis-ci.org/gustavobeavis/DDDBase)
+[![Windows status](https://ci.appveyor.com/api/projects/status/jl9q4md2o764optc?svg=true)](https://ci.appveyor.com/project/gustavobeavis/dddbase)
 [![Coverage Status](https://coveralls.io/repos/github/gustavobeavis/DDDBase/badge.svg?branch=master)](https://coveralls.io/github/gustavobeavis/DDDBase?branch=master)
 [![codebeat badge](https://codebeat.co/badges/e9a671f2-8bc0-41ff-95bd-24d404f547cb)](https://codebeat.co/projects/github-com-gustavobeavis-dddbase-master)
 [![Daviid Dependencies](https://david-dm.org/gustavobeavis/DDDBase.svg)](https://david-dm.org/gustavobeavis/DDDBase)
