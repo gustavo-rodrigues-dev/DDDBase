@@ -11,5 +11,5 @@ build: off
 test_script:
   - npm run lint
   - npm run build
-  - npm run coveralls
+  - npm run cover
 version: "{build}"
