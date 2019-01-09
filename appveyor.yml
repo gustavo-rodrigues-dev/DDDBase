@@ -1,12 +1,5 @@
 environment:
   matrix:
-    - nodejs_version: "0.10"
-    - nodejs_version: "0.12"
-    - nodejs_version: "1.8"
-    - nodejs_version: "2.5"
-    - nodejs_version: "3.3"
-    - nodejs_version: "4.9"
-    - nodejs_version: "5.12"
     - nodejs_version: "6.14"
     - nodejs_version: "7.10"
     - nodejs_version: "8.12"
@@ -14,10 +7,9 @@ cache:
   - node_modules
 install:
   - npm install
-build: 
+build: off
+test_script:
   - npm run lint
   - npm run build
   - npm run coveralls
-test_script:
-  - npm run test
 version: "{build}"
