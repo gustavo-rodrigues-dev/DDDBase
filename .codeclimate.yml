@@ -8,3 +8,4 @@ exclude_patterns:
   - docs/**
   - public/**
   - database/**
+  - test/**
