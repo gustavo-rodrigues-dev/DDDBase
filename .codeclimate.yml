@@ -1,0 +1,10 @@
+
+plugins: 
+  eslint:
+    enabled: true
+    config:
+      config: .eslintrc.js
+exclude_patterns:
+  - docs/**
+  - public/**
+  - database/**
