@@ -16,4 +16,5 @@ script:
   - npm run build
   - npm run coveralls
 after_script:
-  - ./cc-test-reporter after-build -t lcov ./coverage/lcov.info
+  - ./cc-test-reporter after-build -t lcov ./coverage/*.json
+  - ./cc-test-reporter upload-coverage
