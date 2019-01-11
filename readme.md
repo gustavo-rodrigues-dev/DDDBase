@@ -5,6 +5,8 @@
 [![Daviid Dependencies](https://david-dm.org/gustavobeavis/DDDBase.svg)](https://david-dm.org/gustavobeavis/DDDBase)
 [![Daviid Dependencies](https://david-dm.org/gustavobeavis/DDDBase/dev-status.svg)](https://david-dm.org/gustavobeavis/DDDBase?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/gustavobeavis/DDDBase/badge.svg?targetFile=package.json)](https://snyk.io/test/github/gustavobeavis/DDDBase?targetFile=package.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 # DDD Boilerplate
 Esse projeto tem o objetivo de demonstrar uma arquitetura ONION na prática, com algumas estratégias mais flexíveis de exposição, podendo ser servida como uma aplicação server convencional, serverless, e em breve cli.
