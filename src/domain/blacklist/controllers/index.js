@@ -1,11 +1,7 @@
-import addBlackList from './addBlackList'
-import checkBlacklist from './checkBlacklist'
-import removeBlacklist from './removeBlacklist'
+import AddController from './addBlackList'
+import CheckBlacklistController from './checkBlacklist'
+import RemoveBlacklistController from './removeBlacklist'
 
-const BlacklistController = {
-  addBlacklist: addBlackList.add,
-  checkBlacklist: checkBlacklist.verify,
-  removeBlacklist: removeBlacklist.delete
-}
-
-export default BlacklistController
+export const addBlacklist = new AddController()
+export const checkBlacklist = new CheckBlacklistController()
+export const removeBlacklist = new RemoveBlacklistController()

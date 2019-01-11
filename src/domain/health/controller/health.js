@@ -1,9 +1,13 @@
 import { uptime as proccessUptime } from 'process'
-import { datasource } from '../../../infrastructure/repositories/index'
-class Health {
-  static async uptime (input, output) {
+import { store } from '../../../infrastructure/repositories/index'
+import Controller from '../../common/controller'
+
+class Health extends Controller {
+  async uptime (input, output) {
     try {
-      await datasource.sequelize.authenticate()
+      await Promise.all(Object.values(store.getDatasources('relational').datasources).map(datasource => {
+        datasource.instanceDriver.authenticate()
+      }))
       return output
         .status(200)
         .send(`The system is online since ${new Date(Date.now() - proccessUptime() * 1000)}!`)

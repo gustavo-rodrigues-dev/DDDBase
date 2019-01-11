@@ -1,11 +1,12 @@
 /* global  describe,before,beforeEach,afterEach,it,assert */
 import { createUser, emptyUsers } from './fixtures/blackList.fixture'
 import AddBlackList from '../../../src/domain/blacklist/controllers/addBlackList'
+const addBlackList = new AddBlackList()
 
 let output = null
 describe('AddBlackList Domain', () => {
   before(done => {
-    global.datasource.sequelize.sync().then(() => {
+    global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()
     })
   })
@@ -22,15 +23,16 @@ describe('AddBlackList Domain', () => {
   })
 
   it('should add a CPF to a database', done => {
-    AddBlackList.add(
-      {
-        cpf: '43460561050'
-      },
-      output
-    )
+    addBlackList
+      .add(
+        {
+          cpf: '43460561050'
+        },
+        output
+      )
       .then(res => {
         const expectedResult = {
-          status: 200,
+          status: 202,
           response: {
             success: true,
             msg: 'Saved successfully',
@@ -48,18 +50,19 @@ describe('AddBlackList Domain', () => {
   })
 
   it('should invalid CPF', done => {
-    AddBlackList.add(
-      {
-        cpf: '897245892347954523'
-      },
-      output
-    )
+    addBlackList
+      .add(
+        {
+          cpf: '897245892347954523'
+        },
+        output
+      )
       .then(res => {
         const expectedResult = {
           status: 500,
           response: {
             success: false,
-            data: 'Validation error: invalid CPF number',
+            data: 'Invalid CPF number',
             msg: 'Error on save blacklist'
           }
         }

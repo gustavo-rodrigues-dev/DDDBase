@@ -2,7 +2,12 @@
 	"name": "ddd-base",
 	"version": "1.0.0",
 	"description": "Bassic DDD Express",
-	"keywords": [ "express", "lambda", "DDD", "Boilerplate" ],
+	"keywords": [
+		"express",
+		"lambda",
+		"DDD",
+		"Boilerplate"
+	],
 	"author": "Gustavo S. Rodrigues <gustavo.beavis@gmail.com>",
 	"license": "MIT",
 	"repository": "https://github.com/gustavobeavis/DDDBase",

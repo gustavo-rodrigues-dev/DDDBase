@@ -1,14 +1,15 @@
 import config from '../../config/config'
 import loggerFactory from '../factories/loggerFactory'
-import sequelizeFactory from '../factories/sequelizeFactory'
 import BlackListRepository from './blackList'
+import Store from '../store/'
 
 const appLogger = loggerFactory({
   level: config.level
 })
 
-const datasource = sequelizeFactory(config, appLogger)
+const store = new Store(config.db, appLogger)
+const blacklistRepository = new BlackListRepository({
+  relational: store.getDatasource('relational', 'blacklist').getModel('blackList')
+})
 
-const blacklistRepository = new BlackListRepository(datasource.models.blackList)
-
-export { blacklistRepository, datasource }
+export { store, blacklistRepository }

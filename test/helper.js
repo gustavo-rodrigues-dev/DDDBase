@@ -1,7 +1,7 @@
 import assert from 'assert'
 import supertest from 'supertest'
 import app from '../src/index'
-import sequelizeFactory from '../src/infrastructure/factories/sequelizeFactory'
+import Store from '../src/infrastructure/store'
 
 class Output {
   status (num) {
@@ -27,6 +27,6 @@ class Output {
 global.app = app
 global.Output = Output
 global.config = app.get('config')
-global.datasource = sequelizeFactory(global.config, app.logger)
+global.store = new Store(global.config.db, app.logger)
 global.assert = assert
 global.request = supertest(app)

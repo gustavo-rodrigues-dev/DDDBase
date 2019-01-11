@@ -1,5 +1,5 @@
 import config from './config/config'
-import App from './infrastructure/http/middlewares/server/index'
+import App from './presentation/http/server/index'
 
 const server = App(config)
 

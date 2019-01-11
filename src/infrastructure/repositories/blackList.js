@@ -1,31 +1,37 @@
-import { clear, isValid } from 'cpf'
-import InvalidCpfCNumber from './exceptions/invalidCpfCNumber'
 class BlackListRepository {
   constructor (model) {
-    this.model = model
+    this.stores = {
+      relational: model.relational
+    }
   }
+
   async add (cpf) {
-    return this.model.create({
-      cpf: cpf
+    const blackList = await this.stores.relational.findCreateFind({
+      where: {
+        cpf: cpf
+      },
+      defaults: {
+        cpf: cpf
+      }
     })
+    return {
+      isNew: blackList[0].isNewRecord,
+      data: blackList[0].dataValues
+    }
   }
 
   async remove (cpf) {
-    return this.model.destroy({
+    return this.stores.relational.destroy({
       where: {
-        cpf: clear(cpf)
+        cpf: cpf
       }
     })
   }
 
   async contains (cpf) {
-    if (!isValid(cpf)) {
-      throw new InvalidCpfCNumber()
-    }
-
-    return this.model.count({
+    return this.stores.relational.count({
       where: {
-        cpf: clear(cpf)
+        cpf: cpf
       }
     })
   }

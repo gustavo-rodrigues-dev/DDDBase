@@ -1,11 +1,12 @@
 /* global  describe,before,beforeEach,afterEach,it,assert */
 import { createUser, emptyUsers } from './fixtures/blackList.fixture'
 import RemoveBlacklist from '../../../src/domain/blacklist/controllers/removeBlacklist'
-
+const removeBlacklist = new RemoveBlacklist()
 let output = null
+
 describe('RemoveBlacklist Domain ', () => {
   before(done => {
-    global.datasource.sequelize.sync().then(() => {
+    global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()
     })
   })
@@ -22,12 +23,13 @@ describe('RemoveBlacklist Domain ', () => {
   })
 
   it('should Delete a valid CPF', done => {
-    RemoveBlacklist.delete(
-      {
-        cpf: '58151575034'
-      },
-      output
-    )
+    removeBlacklist
+      .delete(
+        {
+          cpf: '58151575034'
+        },
+        output
+      )
       .then(res => {
         const expectedResult = {
           status: 204,
@@ -44,16 +46,21 @@ describe('RemoveBlacklist Domain ', () => {
   })
 
   it('should Delete an invalid CPF', done => {
-    RemoveBlacklist.delete(
-      {
-        cpf: '2112345324534'
-      },
-      output
-    )
+    removeBlacklist
+      .delete(
+        {
+          cpf: '2112345324534'
+        },
+        output
+      )
       .then(res => {
         const expectedResult = {
-          status: 204,
-          response: undefined
+          status: 500,
+          response: {
+            success: false,
+            data: 'Invalid CPF number',
+            msg: 'Error on save blacklist'
+          }
         }
 
         assert.deepEqual(res, expectedResult)

@@ -1,18 +1,26 @@
 import { blacklistRepository } from '../../../infrastructure/repositories/index'
+import InvalidCpfCNumber from '../exceptions/invalidCpfCNumber'
 import MissingCpf from '../exceptions/missingCpf'
-class AddBlacklist {
-  static async add (input, output) {
+import Controller from '../../common/controller'
+import cpfValidator from '../validators/cpfValidator'
+import { unmask, mask } from '../transfoms/cpfTransform'
+
+class AddBlacklist extends Controller {
+  async add (input, output) {
     try {
       if (!input.cpf) {
         throw new MissingCpf()
       }
 
-      const newBlacklist = await blacklistRepository.add(input.cpf)
+      if (!cpfValidator.isValidDocument(input.cpf)) {
+        throw new InvalidCpfCNumber()
+      }
 
-      return output.status(200).json({
+      const newBlacklist = await blacklistRepository.add(unmask(input.cpf))
+      return output.status((newBlacklist.isNew ? 201 : 202)).json({
         success: true,
         msg: 'Saved successfully',
-        data: newBlacklist.cpf
+        data: mask(newBlacklist.data.cpf)
       })
     } catch (e) {
       let code = 500
@@ -21,22 +29,10 @@ class AddBlacklist {
         code = e.code
       }
 
-      if (e.errors[0].type === 'unique violation') {
-        code = 301
-      }
-
-      if (code > 399) {
-        return output.status(code).json({
-          success: false,
-          msg: 'Error on save blacklist',
-          data: e.message
-        })
-      }
-
       return output.status(code).json({
-        success: true,
-        msg: 'Saved successfully',
-        data: e.errors[0].value
+        success: false,
+        msg: 'Error on save blacklist',
+        data: e.message
       })
     }
   }

@@ -3,7 +3,7 @@ import { createUser, emptyUsers } from '../fixtures/blackList.fixture'
 
 describe('Black list route', () => {
   before(done => {
-    global.datasource.sequelize.sync().then(() => {
+    global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()
     })
   })
@@ -92,7 +92,7 @@ describe('Black list route', () => {
       .send({
         cpf: '11675526010'
       })
-      .expect(200)
+      .expect(202)
       .end((err, res) => {
         const expectedResult = {
           success: true,
@@ -111,7 +111,7 @@ describe('Black list route', () => {
       .send({
         cpf: '58151575034'
       })
-      .expect(301)
+      .expect(202)
       .end((err, res) => {
         const expectedResult = {
           success: true,
