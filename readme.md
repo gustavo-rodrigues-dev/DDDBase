@@ -7,7 +7,6 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/gustavobeavis/DDDBase/badge.svg?targetFile=package.json)](https://snyk.io/test/github/gustavobeavis/DDDBase?targetFile=package.json)
 
 # DDD Boilerplate
-
 Esse projeto tem o objetivo de demonstrar uma arquitetura ONION na prática, com algumas estratégias mais flexíveis de exposição, podendo ser servida como uma aplicação server convencional, serverless, e em breve cli.
 
 Esse projeto é dividido em dois grandes blocos, a primeira, na camada de Domain, onde são resolvidas todas as regras de negócio da API, sem nenhuma interferência de agentes externos diretamente, exceto pelo uso das Repositories, que abstraem toda a regra de persistência da aplicação. Já o segundo pilar, consiste numa camada de Infraestructure modular, que contem uma camada de dados e de abstração, podendo facilmente interoperar com diferentes modalidades de Banco de dados, e também uma camada de middleware http, onde, temos agentes incomuns tanto na exposição da aplicação como serverless assim como numa aplicação server convencional, flexibilizando o processo de tomada de decisão ou mudança de escopo.
