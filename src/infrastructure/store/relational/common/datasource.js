@@ -8,8 +8,8 @@ class BaseDatasource {
     this.dialect = config.dialect
     this.database = config.database
     this.Driver = Sequelize
-    this.models = []
     this.logger = logger
+    this.config = config
     this.instanceDriver = this.loadDriver(config)
   }
 

@@ -1,6 +1,6 @@
 /* global  describe,before,beforeEach,afterEach,it,assert */
 import { createUser, emptyUsers } from './fixtures/blackList.fixture'
-import CheckBlacklist from '../../../src/domain/blacklist/controllers/checkBlacklist'
+import CheckBlacklist from '../../../../src/domain/blacklist/controllers/checkBlacklist'
 const checkBlacklist = new CheckBlacklist()
 let output = null
 
