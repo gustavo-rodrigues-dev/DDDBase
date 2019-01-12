@@ -7,11 +7,11 @@ export function emptyUsers () {
 }
 
 export function invalidateTable () {
-  return global.datasource.instanceDriver.queryInterface.renameColumn(BlackList.getTableName(), 'cpf', 'invalidate')
+  return global.store.getDatasource('relational', 'blacklist').instanceDriver.queryInterface.renameColumn(BlackList.getTableName(), 'cpf', 'invalidate')
 }
 
 export function validateTable () {
-  return global.datasource.instanceDriver.queryInterface.renameColumn(BlackList.getTableName(), 'invalidate', 'cpf')
+  return global.store.getDatasource('relational', 'blacklist').instanceDriver.queryInterface.renameColumn(BlackList.getTableName(), 'invalidate', 'cpf')
 }
 
 export function createUser () {
