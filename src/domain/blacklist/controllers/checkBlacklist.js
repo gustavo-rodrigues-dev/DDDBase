@@ -1,7 +1,5 @@
 
 import { blacklistRepository } from '../../../infrastructure/repositories/index'
-import InvalidCpfCNumber from '../exceptions/invalidCpfCNumber'
-import MissingCpf from '../exceptions/missingCpf'
 import Controller from '../../common/controller'
 import cpfValidator from '../validators/cpfValidator'
 import { unmask } from '../transfoms/cpfTransform'
@@ -10,14 +8,7 @@ class checkBlacklist extends Controller {
   async verify (input, output) {
     const cpf = unmask(input.cpf)
     try {
-      if (!input.cpf) {
-        throw new MissingCpf()
-      }
-
-      if (!cpfValidator.isValidDocument(input.cpf)) {
-        throw new InvalidCpfCNumber()
-      }
-
+      cpfValidator.validate(input.cpf)
       const cpfIsBlocked = !!await blacklistRepository.contains(cpf)
 
       return output.status(200).json({
