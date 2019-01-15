@@ -1,7 +1,7 @@
 language: node_js
 os:
-  - windows
   - linux
+  - windows
   - osx
 node_js:
   - "6"
@@ -12,13 +12,13 @@ node_js:
 env:
   - NODE_ENV="test"
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; chmod +x ./cc-test-reporter; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; ./cc-test-reporter before-build; fi
 script:
   - npm run lint
   - npm run build
   - npm run coveralls
 after_script:
-  - ./cc-test-reporter after-build -t lcov ./coverage/*.json
-  - ./cc-test-reporter upload-coverage
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; ./cc-test-reporter after-build -t lcov ./coverage/*.json; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; ./cc-test-reporter upload-coverage; fi
