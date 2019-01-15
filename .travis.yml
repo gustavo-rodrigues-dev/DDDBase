@@ -12,7 +12,7 @@ node_js:
 env:
   - NODE_ENV="test"
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; chmod +x ./cc-test-reporter; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; ./cc-test-reporter before-build; fi
 script:
