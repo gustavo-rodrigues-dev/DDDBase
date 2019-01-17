@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package ddd_base.blacklist;
+
+service ProviderBrokerService {
+  rpc addBlackList(input) returns (stream added_black_list){}
+  rpc checkBlacklist(input) returns(stream checked_blacklist){}
+  rpc removeBlacklist(input) returns(stream removed_black_list){}
+}
+
+message input {
+  string cpf = 1;
+}
+
+message removed_black_list {
+  int32 status = 1;
+  optional string response = 2;
+}
+
+message saved_response {
+  bool success = 1;
+  string msg = 2;
+  string data = 3;
+}
+
+message is_blocked {
+  bool isBlocked = 1;
+}
+
+message checked_response {
+  bool success = 1;
+  string msg = 2;
+  is_blocked data = 3;
+}
+
+message added_black_list {
+  int32 status = 1;
+  saved_response response = 2;
+}
+
+message checked_blacklist {
+  int32 status = 1;
+  checked_response response = 2;
+}
