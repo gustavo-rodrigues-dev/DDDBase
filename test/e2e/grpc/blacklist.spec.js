@@ -1,4 +1,4 @@
-/* global  describe,before,beforeEach,afterEach,it,request,assert */
+/* global  describe,before,beforeEach,afterEach,it,assert */
 import { createUser, emptyUsers } from '../fixtures/blackList.fixture'
 
 describe('Black list service', () => {
@@ -19,7 +19,6 @@ describe('Black list service', () => {
   })
 
   it('should return an invalid CPF on Check', done => {
-
     const call = global.grpcCLient.checkBlacklist({
       cpf: '58151575031'
     })
