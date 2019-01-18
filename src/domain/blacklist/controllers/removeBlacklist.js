@@ -27,8 +27,8 @@ class RemoveBlackList extends Controller {
 
       return output.status(code).json({
         success: false,
-        msg: 'Error on save blacklist',
-        data: e.message
+        msg: 'Error on delete blacklist',
+        detail: e.message
       })
     }
   }

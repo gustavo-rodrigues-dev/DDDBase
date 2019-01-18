@@ -1,5 +1,5 @@
 /* global  describe, it,request */
-describe('Health route', () => {
+describe('HTTP Request - Health route', () => {
   it('should return api status 200', done => {
     request
       .get('/status')

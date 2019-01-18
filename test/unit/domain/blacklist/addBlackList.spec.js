@@ -59,10 +59,10 @@ describe('AddBlackList Domain', () => {
       )
       .then(res => {
         const expectedResult = {
-          status: 500,
+          status: 412,
           response: {
             success: false,
-            data: 'Invalid CPF number',
+            detail: 'Invalid CPF number',
             msg: 'Error on save blacklist'
           }
         }

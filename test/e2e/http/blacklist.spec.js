@@ -1,7 +1,7 @@
 /* global  describe,before,beforeEach,afterEach,it,request,assert */
 import { createUser, emptyUsers } from '../fixtures/blackList.fixture'
 
-describe('Black list route', () => {
+describe('HTTP Request - Black list', () => {
   before(done => {
     global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()
@@ -26,7 +26,7 @@ describe('Black list route', () => {
         const expectedResult = {
           success: false,
           msg: 'Error on check blacklist',
-          data: 'Invalid CPF number'
+          detail: 'Invalid CPF number'
         }
 
         assert.deepEqual(res.body, expectedResult)
@@ -42,7 +42,7 @@ describe('Black list route', () => {
         const expectedResult = {
           success: false,
           msg: 'Error on check blacklist',
-          data: 'Missing CPF number'
+          detail: 'Missing CPF number'
         }
 
         assert.deepEqual(res.body, expectedResult)

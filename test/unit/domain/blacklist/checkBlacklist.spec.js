@@ -91,8 +91,8 @@ describe('CheckBlacklist Domain ', () => {
           status: 412,
           response: {
             success: false,
-            data: 'Invalid CPF number',
-            msg: 'Error on check blacklist'
+            msg: 'Error on check blacklist',
+            detail: 'Invalid CPF number'
           }
         }
         assert.deepEqual(res, expectedResult)
