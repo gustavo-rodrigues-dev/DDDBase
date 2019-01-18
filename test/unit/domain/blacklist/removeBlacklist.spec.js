@@ -58,8 +58,8 @@ describe('RemoveBlacklist Domain ', () => {
           status: 500,
           response: {
             success: false,
-            data: 'Invalid CPF number',
-            msg: 'Error on save blacklist'
+            detail: 'Invalid CPF number',
+            msg: 'Error on delete blacklist'
           }
         }
 

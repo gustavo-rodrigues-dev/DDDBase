@@ -16,14 +16,14 @@ class AddBlacklist extends Controller {
     } catch (e) {
       let code = 500
 
-      if (e.code) {
-        code = e.code
+      if (e.statusCode) {
+        code = e.statusCode
       }
 
       return output.status(code).json({
         success: false,
         msg: 'Error on save blacklist',
-        data: e.message
+        detail: e.message
       })
     }
   }

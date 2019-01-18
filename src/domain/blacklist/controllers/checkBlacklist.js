@@ -27,7 +27,7 @@ class checkBlacklist extends Controller {
       return output.status(code).json({
         success: false,
         msg: 'Error on check blacklist',
-        data: e.message
+        detail: e.message
       })
     }
   }

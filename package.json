@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "./src/index.js",
-    "start:server:local": "cross-env NODE_ENV=local babel-node ./src/index.js",
+    "start:server:local": "cross-env NODE_ENV=local babel-node ./src/grpc.js",
     "prestart:serverless": "npm run build:serverless",
     "start:serverless": "sam local start-api",
     "prestart:serverless:debug": "npm run build:serverless",
@@ -63,6 +63,7 @@
     ]
   },
   "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
     "aws-serverless-express": "^3.3.5",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
@@ -84,6 +85,7 @@
     "passport-jwt": "^4.0.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
+    "proto-loader": "^0.2.0",
     "sequelize": "^4.22.11",
     "sqlite3": "^4.0.2",
     "winston": "^3.0.0"
