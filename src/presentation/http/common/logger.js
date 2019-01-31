@@ -5,4 +5,6 @@ export default server => {
   server.logger = LoggerFactory({
     level: config.level
   })
+
+  return server
 }

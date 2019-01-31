@@ -5,7 +5,7 @@ import logger from '../common/logger'
 import routes from './routes'
 import boot from './boot'
 
-module.exports = config => {
+export default config => {
   const server = express()
   server.set('config', config)
   body(server)

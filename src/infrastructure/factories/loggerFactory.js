@@ -1,21 +1,16 @@
 import { createLogger, transports } from 'winston'
-
-class Logger {
+class Logger extends createLogger {
   constructor (config) {
     const debugTransports = [
       new transports.Console({
         colorize: true
       })
     ]
-
-    Object.assign(
-      this,
-      createLogger({
-        level: config.level,
-        json: true,
-        transports: debugTransports
-      })
-    )
+    super({
+      level: config.level,
+      json: true,
+      transports: debugTransports
+    })
   }
 }
 

@@ -1,4 +1,4 @@
-import server from './serverless/'
+import server from './server/'
 
 exports = config => {
   server(config)
