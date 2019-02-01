@@ -1,4 +1,4 @@
-import LoggerFactory from '../../../infrastructure/factories/loggerFactory'
+import LoggerFactory from '../../../lib/logger'
 
 export default server => {
   const config = server.get('config').debug
