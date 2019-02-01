@@ -5,7 +5,7 @@ import Health from '../../../../src/domain/health/controller/health'
 const health = new Health()
 
 let output = null
-describe('Health Domain', () => {
+describe('UNIT - Health - HealthCheck', () => {
   beforeEach(done => {
     output = new global.Output()
     done()

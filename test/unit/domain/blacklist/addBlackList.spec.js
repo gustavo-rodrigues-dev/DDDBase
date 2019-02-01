@@ -4,7 +4,7 @@ import AddBlackList from '../../../../src/domain/blacklist/controllers/addBlackL
 const addBlackList = new AddBlackList()
 
 let output = null
-describe('AddBlackList Domain', () => {
+describe('UNIT - Blacklist - AddBlackList', () => {
   before(done => {
     global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()
@@ -32,11 +32,38 @@ describe('AddBlackList Domain', () => {
       )
       .then(res => {
         const expectedResult = {
-          status: 202,
+          status: 201,
           response: {
             success: true,
             msg: 'Saved successfully',
             data: '434.605.610-50'
+          }
+        }
+
+        assert.deepEqual(res, expectedResult)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('should return a success on Block CPF but dont duplicate', done => {
+    addBlackList
+      .add(
+        {
+          cpf: '58151575034'
+        },
+        output
+      )
+      .then(res => {
+        const expectedResult = {
+          status: 202,
+          response: {
+            success: true,
+            msg: 'Saved successfully',
+            data: '581.515.750-34'
           }
         }
 

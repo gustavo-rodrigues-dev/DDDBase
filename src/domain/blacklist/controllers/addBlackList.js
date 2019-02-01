@@ -8,17 +8,14 @@ class AddBlacklist extends Controller {
     try {
       cpfValidator.validate(input.cpf)
       const newBlacklist = await blacklistRepository.add(unmask(input.cpf))
-      return output.status((newBlacklist.isNew ? 201 : 202)).json({
+      const status = newBlacklist.isNew ? 201 : 202
+      return output.status(status).json({
         success: true,
         msg: 'Saved successfully',
         data: mask(newBlacklist.data.cpf)
       })
     } catch (e) {
-      let code = 500
-
-      if (e.statusCode) {
-        code = e.statusCode
-      }
+      let code = e.statusCode || 500
 
       return output.status(code).json({
         success: false,

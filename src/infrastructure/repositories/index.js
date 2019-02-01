@@ -1,5 +1,5 @@
 import config from '../../config/config'
-import loggerFactory from '../factories/loggerFactory'
+import loggerFactory from '../../lib/logger'
 import BlackListRepository from './blackList'
 import Store from '../store/'
 

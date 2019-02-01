@@ -1,8 +1,9 @@
+import Router from '../common/roter'
 import { addBlacklist, checkBlacklist, removeBlacklist } from '../../../domain/blacklist/controllers/index'
 import Output from '../../../lib/output'
 import { Readable } from 'stream'
 import { status } from 'grpc'
-class BlackListController {
+class BlacklistRouter extends Router {
   static addBlacklist (call) {
     const stream = new Readable({
       objectMode: true,
@@ -20,7 +21,7 @@ class BlackListController {
         stream.resume()
       })
       .catch(err => {
-        console.log(err)
+        this.logger.error('Error on addBlacklist', err)
         stream.unpipe(call).destroy()
         err.code = status.INTERNAL
         call.emit('error', err)
@@ -42,7 +43,7 @@ class BlackListController {
         stream.resume()
       })
       .catch(err => {
-        console.log(err)
+        this.logger.error('Error on checkBlacklist', err)
         stream.unpipe(call).destroy()
         err.code = status.INTERNAL
         call.emit('error', err)
@@ -64,11 +65,11 @@ class BlackListController {
         stream.resume()
       })
       .catch(err => {
-        console.log(err)
+        this.logger.error('Error on removeBlacklist', err)
         stream.unpipe(call).destroy()
         err.code = status.INTERNAL
         call.emit('error', err)
       })
   }
 }
-export default BlackListController
+export default BlacklistRouter

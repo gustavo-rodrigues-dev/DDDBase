@@ -4,7 +4,7 @@ import RemoveBlacklist from '../../../../src/domain/blacklist/controllers/remove
 const removeBlacklist = new RemoveBlacklist()
 let output = null
 
-describe('RemoveBlacklist Domain ', () => {
+describe('UNIT - Blacklist - RemoveBlacklist ', () => {
   before(done => {
     global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()

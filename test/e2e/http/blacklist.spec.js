@@ -1,7 +1,7 @@
 /* global  describe,before,beforeEach,afterEach,it,request,assert */
 import { createUser, emptyUsers } from '../fixtures/blackList.fixture'
 
-describe('HTTP Request - Black list', () => {
+describe('HTTP - Black list', () => {
   before(done => {
     global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()
@@ -92,7 +92,7 @@ describe('HTTP Request - Black list', () => {
       .send({
         cpf: '11675526010'
       })
-      .expect(202)
+      .expect(201)
       .end((err, res) => {
         const expectedResult = {
           success: true,
