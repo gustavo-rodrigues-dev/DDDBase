@@ -112,8 +112,8 @@ paths:
       parameters:
         - $ref: '#/parameters/cpf'
       responses:
-        '200':
-          description: OK
+        '204':
+          description: Success
         '412':
           description: Precondition Failed
           schema:
