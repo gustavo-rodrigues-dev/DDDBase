@@ -6,12 +6,10 @@ environment:
     - nodejs_version: "9"
     - nodejs_version: "10"
 cache:
-  - node_modules
+  #- node_modules
 install:
   - npm install
 build: off
-cache:
-  #- packages
 test_script:
   - npm run lint
   - npm run build
