@@ -10,8 +10,9 @@ cache:
 install:
   - npm install
 build: off
+cache:
+  #- packages
 test_script:
-  - npm cache clear --force
   - npm run lint
   - npm run build
   - npm run test
