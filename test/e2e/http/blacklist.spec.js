@@ -1,7 +1,7 @@
 /* global  describe,before,beforeEach,afterEach,it,request,assert */
 import { createUser, emptyUsers } from '../fixtures/blackList.fixture'
 
-describe('HTTP Request - Black list', () => {
+describe('HTTP - Black list', () => {
   before(done => {
     global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()

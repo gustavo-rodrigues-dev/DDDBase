@@ -4,7 +4,7 @@ import CheckBlacklist from '../../../../src/domain/blacklist/controllers/checkBl
 const checkBlacklist = new CheckBlacklist()
 let output = null
 
-describe('CheckBlacklist Domain ', () => {
+describe('UNIT - Blacklist - CheckBlacklist ', () => {
   before(done => {
     global.store.getDatasource('relational', 'blacklist').instanceDriver.sync().then(() => {
       done()

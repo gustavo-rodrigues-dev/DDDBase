@@ -12,8 +12,8 @@ class Health extends Controller {
       return output
         .status(200)
         .send(`The system is online since ${new Date(Date.now() - proccessUptime() * 1000)}!`)
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      this.logger.error('Error on check status', error)
       return output.status(500).send(`The system is unavailable`)
     }
   }
