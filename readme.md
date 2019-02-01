@@ -9,9 +9,9 @@
 
 
 # DDD Boilerplate
-Esse projeto tem o objetivo de demonstrar uma arquitetura ONION na prática, com algumas estratégias mais flexíveis de exposição, podendo ser servida como uma aplicação server convencional, serverless, e em breve cli.
+Esse projeto tem o objetivo de demonstrar uma arquitetura HEXAGONAL na prática, com algumas estratégias mais flexíveis de exposição, seja ela HTTP ou gRPC, no caso de HTTP, a exposição pode ser feita tanto como uma aplicação Server convencional assim como uma aplicação Lambda (HTTP)
 
-Esse projeto é dividido em dois grandes blocos, a primeira, na camada de Domain, onde são resolvidas todas as regras de negócio da API, sem nenhuma interferência de agentes externos diretamente, exceto pelo uso das Repositories, que abstraem toda a regra de persistência da aplicação. Já o segundo pilar, consiste numa camada de Infraestructure modular, que contem uma camada de dados e de abstração, podendo facilmente interoperar com diferentes modalidades de Banco de dados, e também uma camada de middleware http, onde, temos agentes incomuns tanto na exposição da aplicação como serverless assim como numa aplicação server convencional, flexibilizando o processo de tomada de decisão ou mudança de escopo.
+Esse projeto tem como objetivo demonstrar alguns conceitos de arquitetura de software, de modo que a camada de negocio e dominio não se preocupe com onde e como os dados serão persistidos, assim como ela também não se preocupe com a forma que será exposta, uma vez que todo software tem como final streams de entrada e saída, (readables e writables streams), portanto no nosso caso implementamos uma exposição utilizando HTTP e outra GRPC afim de demonstrar que um dominio bem implementado não precisa de uma refatoração para passar a atender em outro protocolo, assim como um dominio bem implementado não precisa ser vinculado ao banco ou forma que o dado será persistido e sim em seus repositórios que fornecem uma camada de funções para acessar esses registros.
 
 ## Estrutura
 
@@ -19,35 +19,47 @@ Esse projeto é dividido em dois grandes blocos, a primeira, na camada de Domain
     - migrations
     - seeders
 - log
-- public
 - server
+    - nginx
 - src
     - config
-    - domain
-        - ownBusiness
-            - controllers
-        - exceptions
--  infrastructure
-    - factories
-    - http
-        - middlewares
+        - domain
             - common
+    - exceptions
+    - infrastructure
+        - repositories
+        - services
+        - store
+            - document
+            - graph
+            - keyvalue
+            - relational
+    - lib
+    - presentation
+        - grpc
+            - proto
+            - routes
+            - server
+            - middlewares
+        - http
+            - common
+                - routes
             - server
                 - middlewares
                 - routes
             - serverless
                 - middlewares
                 - routes
-    - repositories
-        - exceptions
-        - relational
-            - schemas
-        - ownRepository,js
-
 - test
-    - functional
+    - e2e
+        - fixtures
+        - grpc
+        - http
     - unit
-    
+        - domain
+        - infraestructure
+
+
 ### database/migrations
 Pasta destinada as Database Migrations que nos permitem controlar a versão do banco de dados, evitando a necessidade de escrever scripts SQL diretamente e executá-los em ferramentas de administração. Com as Database Migrations (ou Schema Migrations), alterações incrementais nas bases de dados são feitas de forma gerenciada. 
 
@@ -63,18 +75,18 @@ http://docs.sequelizejs.com/manual/tutorial/migrations.html#creating-first-seed
 ### server
 Nessa pastas, estão todas as configurações do servidor, que serão utilizadas nos containers da aplicação
 
-### ser/config
+### src/config
 Nessa pasta, encontra-se todas as configurações da aplicação, responsáveis por habilitar ou desabilitar funções, ou mesmo, configurações de serviço
 ### src/domain
 Nessa camada estarão todas as regras pertinentes ao negócio, incluindo seus controladores excessões, podendo ter diretórios auxiliares para lidar com camadas de validação, transformação, etc. Mas lembre-se que essa camada não deve abstrair camada de dados, ela deve usa-la conforme a regra, assim como não deve abstrair camadas de exposição do serviço, rotas, e afins. Sua finalidade e concentrar regras de negócio.
 
-### src/infrastructure/http/
+### src/presentation/http/
 Nessa camada, estão todos os middlewares de exposição do serviço, podendo ter um ou vários, no nosso caso, temos um middleware comum, com configurações que atendem tanto aplicações Server/Container convencional, assim com um middleware de exposição preparado para AWS Lambda. é nessa camada onde vamos expor nossas rotas, assim como definir middlewares de segurança e transformação de dados vinda da camada HTTP.
 
-### src/infrastructure/factories
-Nessa sessão encontram-se todos os wrapers, fatories e singletons de configuração e uso de recursos da aplicação já atendendo as expectativas do serviço, como instancia do datasource e do logger.
+### src/presentation/grpc/
+Nessa camada, temos a exposição GRPC, assim como HTTP, ela tem seus proprios routes, configs e middlewares, de modo que está desacoplada a camada de deominio.
 
-### test/functional
+### test/e2e
 Sessão responsável por conter todos os testes de integração, ou seja, os testes das rotas propriamente ditas, por ser um projeto BDD, nessa sessão recomenda-se um arquivo por arquivo de rota, de modo que você implemente o teste de todos ou dos principais comportamentos por rota.
 
 ### test/unit

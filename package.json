@@ -51,7 +51,7 @@
     "coverreport": "nyc report --reporter=lcov",
     "precoveralls": "mkdir coverage",
     "coveralls": "npm run cover -- --report lcovonly;npm run coverreport; cat ./coverage/lcov.info",
-    "clean": "rm -f package-lock.json && rm -rf node_modules &&  rm -rf ./dits/ ",
+    "clean": "rm -f package-lock.json && rm -rf node_modules &&  rm -rf ./dist/ ",
     "clean:build": "rm -rf ./dist/",
     "lint": "eslint src/ test/",
     "lint:fix": "eslint src/ test/ --fix"
