@@ -116,7 +116,7 @@ describe('GRPC - Black list service', () => {
     })
     call.on('data', res => {
       const expectedResult = {
-        status: 202,
+        status: 201,
         response: {
           success: true,
           msg: 'Saved successfully',

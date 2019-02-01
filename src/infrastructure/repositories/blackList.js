@@ -14,8 +14,9 @@ class BlackListRepository {
         cpf: cpf
       }
     })
+
     return {
-      isNew: blackList[0].isNewRecord,
+      isNew: blackList[0].createdAt === blackList[0].updatedAt,
       data: blackList[0].dataValues
     }
   }

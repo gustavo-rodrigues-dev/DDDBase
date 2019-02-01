@@ -11,10 +11,7 @@ class RemoveBlackList extends Controller {
 
       return output.sendStatus(204)
     } catch (e) {
-      let code = 500
-      if (e.code) {
-        code = e.code
-      }
+      let code = e.code || 500
 
       return output.status(code).json({
         success: false,

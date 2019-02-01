@@ -7,10 +7,6 @@ class InvalidCpfNumber extends InvalidArgument {
     this.local = 'INFRAESTRUCTURE.REPOSITORY.BLACKLIST'
     this.message = 'Invalid CPF number'
   }
-
-  getStatus () {
-    return this.statusCode
-  }
 }
 
 export default InvalidCpfNumber
