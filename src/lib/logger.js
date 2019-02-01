@@ -6,10 +6,11 @@ export default config => {
       colorize: true
     })
   ]
+
   if (!logger) {
     logger = createLogger({
       level: config.level,
-      json: true,
+      handleExceptions: true,
       transports: debugTransports
     })
   }

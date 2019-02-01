@@ -59,7 +59,7 @@ describe('UNIT - Blacklist - AddBlackList', () => {
       )
       .then(res => {
         const expectedResult = {
-          status: 202,
+          status: 200,
           response: {
             success: true,
             msg: 'Saved successfully',

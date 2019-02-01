@@ -3,7 +3,7 @@ import loggerFactory from '../../../lib/logger'
 class Router {
   constructor () {
     this.logger = loggerFactory({
-      level: config.level
+      level: config.debug.level
     })
   }
 }

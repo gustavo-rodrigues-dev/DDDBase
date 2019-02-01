@@ -111,7 +111,7 @@ describe('HTTP - Black list', () => {
       .send({
         cpf: '58151575034'
       })
-      .expect(202)
+      .expect(200)
       .end((err, res) => {
         const expectedResult = {
           success: true,

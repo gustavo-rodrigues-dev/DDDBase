@@ -43,7 +43,11 @@ paths:
                 type: string
       responses:
         '200':
-          description: OK
+          description: Already created, but success
+          schema:
+            $ref: '#/definitions/SuccessSave'
+        '201':
+          description: Created
           schema:
             $ref: '#/definitions/SuccessSave'
         '412':
@@ -75,7 +79,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/Error'
-  /blacklist/{cpf}: 
+  /blacklist/{cpf}:
     get:
       tags:
         - Blacklist
@@ -89,10 +93,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Check'
-        '301':
-          description: OK
-          schema:
-            $ref: '#/definitions/Check'
         '412':
           description: Precondition Failed
           schema:
@@ -101,7 +101,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/Error'
-    delete: 
+    delete:
       tags:
         - Blacklist
       summary: Remove from the Blacklist.
@@ -152,7 +152,7 @@ definitions:
       data:
         type: object
         properties:
-          isBlocked: 
+          isBlocked:
             type: boolean
             default: true
   Error:

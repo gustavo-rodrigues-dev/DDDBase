@@ -4,7 +4,7 @@ import BlackListRepository from './blackList'
 import Store from '../store/'
 
 const appLogger = loggerFactory({
-  level: config.level
+  level: config.debug.level
 })
 
 const store = new Store(config.db, appLogger)
