@@ -1,4 +1,4 @@
-import config from './config/config'
+import config from './config'
 import App from './presentation/serverless/index'
 import awsServerlessExpress from 'aws-serverless-express'
 const server = App(config)
