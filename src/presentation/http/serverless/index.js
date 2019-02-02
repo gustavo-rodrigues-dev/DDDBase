@@ -5,8 +5,7 @@ import logger from '../common/logger'
 import routes from './routes'
 import eventContext from './middlewares/eventContext'
 import awsServerlessExpress from 'aws-serverless-express'
-
-module.exports = config => {
+export default config => {
   const app = express()
   app.set('config', config)
   body(app)

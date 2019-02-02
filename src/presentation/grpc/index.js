@@ -1,5 +1,5 @@
 import boot from './boot'
 
-module.exports = config => {
+export default config => {
   return boot(config)
 }
