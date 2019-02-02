@@ -1,4 +1,4 @@
-import config from '../../config/config'
+import config from '../../config'
 import loggerFactory from '../../lib/logger'
 import BlackListRepository from './blackList'
 import Store from '../store/'

@@ -1,0 +1,22 @@
+debug:
+  level: silly
+  available: false
+port:
+  http: 3001
+  grpc: 50051
+db:
+  relational:
+  - username: ''
+    password: ''
+    database: blacklist
+    host:
+    port:
+    dialect: sqlite
+    storage: "./database/db.test.sqlite"
+    define:
+      underscored: false
+    debug:
+      maxTime: 1000
+      available: false
+    seederStorage: json
+    seederStoragePath: "./database/migration.test.json"

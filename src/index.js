@@ -1,4 +1,4 @@
-import config from './config/config'
+import config from './config'
 import App from './presentation/http/server/index'
 
 const server = App(config)
