@@ -76,7 +76,7 @@
     "compression": "^1.7.3",
     "consign": "^0.1.6",
     "cors": "^2.8.4",
-    "cpf": "^1.0.6",
+    "cpf": "^2.0.0",
     "express": "^4.16.3",
     "express-winston": "^3.0.0",
     "grpc": "^1.17.0",
