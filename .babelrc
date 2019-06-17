@@ -9,18 +9,6 @@
 			}
 		]
 	],
-	"env": {
-		"test": {
-			"plugins": [
-				[
-					"istanbul",
-					{
-						"exclude": [ "**/*.spec.js" ]
-					}
-				]
-			]
-		}
-	},
 	"sourceMaps": true,
 	"retainLines": true
 }
