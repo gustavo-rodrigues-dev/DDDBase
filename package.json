@@ -103,7 +103,7 @@
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.0.1",
-    "eslint-plugin-standard": "4.0.0",
+    "eslint-plugin-standard": "4.1.0",
     "mocha": "5.2.0",
     "nyc": "14.0.0",
     "pm2": "4.1.2",
