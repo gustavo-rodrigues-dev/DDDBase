@@ -85,7 +85,7 @@
     "moment": "^2.21.0",
     "pg": "^8.4.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^6.1.0",
+    "sequelize": "^6.28.1",
     "sqlite3": "^4.0.2",
     "winston": "^3.0.0"
   },
